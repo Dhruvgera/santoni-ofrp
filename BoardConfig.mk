@@ -58,7 +58,7 @@ endif
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
