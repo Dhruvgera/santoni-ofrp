@@ -44,21 +44,11 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
-
-# DJ9
-ifeq ($(FOX_BUILD_FULL_KERNEL_SOURCES),1)
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_CONFIG := santoni_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/santoni
-else
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/kernel
-endif
-# end DJ9
-
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
@@ -79,9 +69,12 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 
 # TWRP Configuration
 TW_SCREEN_BLANK_ON_BOOT := true
+TW_INCLUDE_FUSE_EXFAT := true
+TW_INCLUDE_NTFS_3G := true
 TW_EXTRA_LANGUAGES := true
 TW_THEME := portrait_hdpi
 TW_INCLUDE_CRYPTO := true
@@ -90,8 +83,7 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_SCREEN_BLANK_ON_BOOT := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-#TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/etc/twrp.fstab
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/etc/twrp.fstab
 BOARD_SUPPRESS_SECURE_ERASE := true
 RECOVERY_SDCARD_ON_DATA := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
@@ -104,7 +96,3 @@ TW_INCLUDE_FUSE_EXFAT := true
 
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
-
-# Treble
-BOARD_NEEDS_VENDORIMAGE_SYMLINK := false
-TARGET_COPY_OUT_VENDOR := vendor
