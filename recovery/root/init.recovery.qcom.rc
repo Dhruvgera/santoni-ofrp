@@ -30,6 +30,7 @@ on fs
     chmod 0777 /dev/qseecom
     chmod 0664 /dev/ion
     chown system system /dev/ion
+    setprop ro.build.system_root_image true
 
     # symlink
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
