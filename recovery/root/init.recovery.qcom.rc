@@ -31,6 +31,7 @@ on fs
     chmod 0664 /dev/ion
     chown system system /dev/ion
     setprop ro.build.system_root_image true
+    export ANDROID_ROOT /system_root
 
     # symlink
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
